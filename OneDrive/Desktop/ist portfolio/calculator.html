@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- Declares the document type and HTML version -->
+<html lang="en">
+<!-- Sets the language of the document to English -->
+<head>
+  <!-- Character encoding for the document -->
+  <meta charset="UTF-8" />
+  
+  <!-- Viewport setting for responsive design (declared twice, should remove duplicate) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Title displayed in the browser tab -->
+  <title>Calculator | Davis Kamau</title>
+
+  <!-- Font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Duplicate meta viewport tag (can be removed) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO metadata -->
+  <title>Davis Kamau | Software Developer</title> <!-- This is a duplicate and should be removed or replaced -->
+  <meta name="description" content="Portfolio of Davis Kamau, a software developer showcasing web projects and skills.">
+  <meta name="keywords" content="Davis Kamau, software engineer, frontend developer, portfolio, web developer Kenya">
+  <meta name="author" content="Davis Kamau">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Internal styles -->
+  <style>
+    * {
+      box-sizing: border-box; /* Ensures padding and border are included in element's total width/height */
+    }
+    body {
+      font-family: 'Roboto Mono', monospace; /* Sets monospaced font */
+      display: flex; /* Flexbox layout */
+      align-items: center; /* Vertically center content */
+      justify-content: center; /* Horizontally center content */
+      height: 100vh; /* Full viewport height */
+      margin: 0; /* Remove default margin */
+      background-color: #f4f4f4; /* Light grey background */
+    }
+    .calculator {
+      background: #fff; /* White background */
+      padding: 30px;
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Subtle shadow */
+    }
+    #display {
+      width: 100%;
+      height: 60px;
+      font-size: 24px;
+      text-align: right; /* Aligns input text to the right */
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 70px); /* 4 columns of equal width */
+      gap: 10px; /* Space between buttons */
+    }
+    button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      background-color: #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #c1c1c1; /* Darker on hover */
+    }
+    .operator {
+      background-color: #ffd54f; /* Yellow for operators */
+    }
+    .operator:hover {
+      background-color: #ffc107; /* Darker yellow on hover */
+    }
+    .equal {
+      background-color: #4caf50; /* Green for equal button */
+      color: white;
+    }
+    .equal:hover {
+      background-color: #43a047; /* Darker green on hover */
+    }
+    .clear {
+      background-color: #f44336; /* Red for clear button */
+      color: white;
+    }
+    .clear:hover {
+      background-color: #d32f2f; /* Darker red on hover */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Calculator container -->
+  <div class="calculator">
+    <!-- Display where input and result appear -->
+    <input type="text" id="display" disabled />
+
+    <!-- Buttons layout -->
+    <div class="buttons">
+      <!-- Top row: clear, parentheses, divide -->
+      <button onclick="clearDisplay()" class="clear">C</button>
+      <button onclick="appendToDisplay('(')">(</button>
+      <button onclick="appendToDisplay(')')">)</button>
+      <button onclick="appendToDisplay('/')" class="operator">/</button>
+
+      <!-- Number and operator buttons -->
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button onclick="appendToDisplay('*')" class="operator">*</button>
+
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button onclick="appendToDisplay('-')" class="operator">-</button>
+
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button onclick="appendToDisplay('+')" class="operator">+</button>
+
+      <button onclick="appendToDisplay('0')">0</button>
+      <button onclick="appendToDisplay('.')">.</button>
+      <button onclick="calculateResult()" class="equal">=</button>
+      <button onclick="backspace()">←</button>
+    </div>
+  </div>
+
+  <!-- JavaScript functionality -->
+  <script>
+    const display = document.getElementById("display"); // Reference to the display input
+
+    // Appends a value (number/operator) to the display
+    function appendToDisplay(value) {
+      display.value += value;
+    }
+
+    // Clears the entire display
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    // Removes the last character from the display
+    function backspace() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    // Evaluates the expression and shows result or error
+    function calculateResult() {
+      try {
+        display.value = eval(display.value); // Evaluate expression (use with caution)
+      } catch (error) {
+        display.value = "Error"; // If invalid input, show error
+      }
+    }
+  </script>
+
+</body>
+</html>

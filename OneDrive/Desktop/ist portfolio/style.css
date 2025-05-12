@@ -1,0 +1,44 @@
+/* Make all images responsive by default */
+img {
+  max-width: 100%; /* Ensures image never overflows its container */
+  height: auto;    /* Maintains the image's aspect ratio */
+}
+
+/* Responsive styles for screens 768px wide or smaller (tablets and phones) */
+@media screen and (max-width: 768px) {
+  
+  /* Adjust navigation layout for small screens */
+  nav {
+    flex-direction: column;  /* Stack nav items vertically */
+    align-items: center;     /* Center align them horizontally */
+    gap: 10px;               /* Space between nav items */
+  }
+
+  /* Style navbar links for mobile layout */
+  .navbar-links {
+    flex-direction: column; /* Stack links vertically */
+    width: 100%;            /* Full width of screen */
+    text-align: center;     /* Center-align link text */
+  }
+
+  /* Make each project card full-width and add spacing */
+  .project-card {
+    width: 100%;             /* Take up entire screen width */
+    margin-bottom: 20px;     /* Space between stacked cards */
+  }
+
+  /* Reduce section padding for smaller screens */
+  section {
+    padding: 20px 10px;      /* Less padding for compact layout */
+  }
+
+  /* Adjust heading sizes for better readability */
+  h1, h2 {
+    font-size: 1.5rem;       /* Scale down headings */
+  }
+
+  /* Adjust paragraph font size for readability */
+  p {
+    font-size: 1rem;         /* Slightly smaller text */
+  }
+}
